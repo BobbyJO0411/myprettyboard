@@ -1,0 +1,4 @@
+# 줄바꿈 통일 (여러 PC/OS에서 작업)
+* text=auto
+*.ps1 text eol=crlf
+*.sh text eol=lf

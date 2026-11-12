@@ -1,0 +1,20 @@
+# 개발용 인프라. 실행: docker compose up -d
+services:
+  db:
+    image: postgres:17
+    container_name: myprettyboard-db
+    environment:
+      POSTGRES_USER: board
+      POSTGRES_PASSWORD: board
+      POSTGRES_DB: board
+    ports:
+      - "${DB_PORT:-5442}:5432"  # 루트 .env 의 DB_PORT 로 변경 가능 (기본 5442)
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U board"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  db-data:
